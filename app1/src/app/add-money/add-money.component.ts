@@ -90,6 +90,7 @@ this.cardStatus=
           this.amountStatus = true;
   
           this.isAddDone = true;
+          
         this.isNotAdd = true;
 
         console.log("month and year checking done ")

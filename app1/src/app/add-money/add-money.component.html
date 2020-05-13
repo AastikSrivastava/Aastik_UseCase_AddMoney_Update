@@ -86,7 +86,7 @@
             <div [hidden]="!amountStatus" class="container" style="width: 70%;">
 
                 <label for="amount"><b>Amount To Be Enter</b></label>
-                <input type="number" placeholder="Enter Amount" name="amount" id="amount"
+                <input type="text" placeholder="Enter Amount" name="amount" id="amount"
                     (ngModelChange)="onChangeAmount($event)" required min="1" required minlength="1" required
                     maxlength="6" class="form-control" required [(ngModel)]="cardsearch.amount" required digitOnly>
 

@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,13 +48,14 @@ public class AddMoneyWallet_Controller {
 	@Autowired
 	CardDetailsDao cardDetailsDao;
 	
-	//WalletRepositoryDao walletDao;
-	
 	CardDetails cardDetails;
 	
 	@Autowired
 	CardDetailsService cardservice;
 	
+	
+	static	Logger logger  = LoggerFactory.getLogger(AddMoneyWallet_Controller.class);
+
 	@GetMapping("/cardDetails/{card_no}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public CardDetails findByCardNo(@PathVariable("card_no") int card_no )
@@ -89,6 +92,9 @@ public class AddMoneyWallet_Controller {
 			System.out.println("Card record not found");
 			
 			//return new ResponseEntity(null,HttpStatus.NOT_FOUND);
+			
+			logger.info(e.getMessage(),HttpStatus.NOT_FOUND);
+			
 			return null;
 			
 		}
@@ -153,6 +159,8 @@ public class AddMoneyWallet_Controller {
 				
 				//return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 				System.out.println(e.getMessage());
+				
+				logger.info(e.getMessage(),HttpStatus.NOT_FOUND);
 				
 				return null;
 			}
