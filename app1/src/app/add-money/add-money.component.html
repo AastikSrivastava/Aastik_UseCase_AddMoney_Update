@@ -1,7 +1,6 @@
 <div class="container"  style="margin-top: 15px;">
     <h1 style="text-align: left;"><strong>Add Money To Wallet Page</strong> </h1>
-    <h6 style ="text-align: left;">@Co-Sponsored By #StayHome-StaySafe &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; © Copyright Indian Online-Wallet (APM Id : Webs_Info_786)</h6>
+    <h6 style ="text-align: left;">@Co-Sponsored By #StayHome-StaySafe &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;© Copyright Indian Online-Wallet (APM Id : Webs_Info_786)</h6>
 
     <hr>
     <br>
@@ -22,47 +21,60 @@
                     <p class="alert alert-danger">Card Number is empty! Please enter cardNo</p>
                 </div>  -->
 
+
                 <div row *ngIf="!isValidCard">
                     <div class="col-xs-12" style="color:red"></div>
                     <p class="alert alert-danger"><strong>Card No. may be null or negative!<br>Please enter valid Card No.</strong></p>
                 </div>
+<br>
 
-            
-
-            <br>
-
-            <button class="cardCheckerCss" type="submit" [disabled]="!cardStatus"><strong>Proceed with Card No.</strong> </button>
-           
-            <!-- <div [hidden]="!monthCheck" style="width: 35%;">
+                <div class="container" style="width: 65%;">
 
 
-                <label for="expiryMonth"><b>Enter Momth</b></label>
-                <input type="text" placeholder="Exp. Month MM" name="expiryMonth" (ngModelChange)="onChangeMonth($event)"
-                    id="expiryMonth" required minlength="1" required maxlength="2" required min="1" required max="12" class="form-control" required
+                <label for="expiryMonth"><b>Enter Expiry Month</b></label>
+                <input type="number" placeholder="Exp. Month MM" name="expiryMonth" (ngModelChange)="onChangeMonth($event)" id="expiryMonth" required minlength="1" required min="1" required max="12" class="form-control" required
                     [(ngModel)]="cardsearch.expiryMonth" required digitOnly>
 
 
 
             </div>
 
-            <div [hidden]="!yearCheck" style="width: 35%;">
+            <div row *ngIf="!isValidMonth">
+                <div class="col-xs-12" style="color:red"></div>
+                <p class="alert alert-danger"><strong>Expiry Month may be null or negative!<br>Please enter valid Month</strong></p>
+            </div>
+<br>
+
+            <div class="container" style="width: 65%;">
   
 
 
-                <label for="expiryYear"><b>Enter Year</b></label>
-                <input type="text" placeholder="Exp. Yr. YYYY" name="expiryYear" (ngModelChange)="onChangeYear($event)"
-                    id="expiryYear" required minlength="4" required maxlength="4" required min="2020" class="form-control" required
+                <label for="expiryYear"><b>Enter Expiry Year</b></label>
+                <input type="number" placeholder="Exp. Yr. YYYY" name="expiryYear"  (ngModelChange)="onChangeYear($event)" id="expiryYear" required minlength="4" required maxlength="4" required min="2020" class="form-control" required
                     [(ngModel)]="cardsearch.expiryYear" required digitOnly>
 
 
-            </div> -->
+            </div>
 
+            <div row *ngIf="!isValidYear">
+                <div class="col-xs-12" style="color:red"></div>
+                <p class="alert alert-danger"><strong>Expiry Year may be null or negative!<br>Please enter valid Year.</strong></p>
+            </div>
+
+
+               
+            
+
+            <br>
+
+            <button class="cardCheckerCss" type="submit" [disabled]="!cardStatus"><strong>Proceed with Card No.</strong> </button>
+           
 
             <div class="row" *ngIf="!isCardCheck">
                 <div class="col-xs-12">
                     <br>
                     <p class="alert alert-danger">
-                        <strong>Sorry!</strong><br>Entered Card No is not found in database.<br>Please try again with another one.
+                        <strong>Sorry!</strong><br>Entered Credit Card is not exist in the Bank<br>Please try again with another one.
 
                     </p>
                 </div>
@@ -74,7 +86,7 @@
             <div [hidden]="!amountStatus" class="container" style="width: 70%;">
 
                 <label for="amount"><b>Amount To Be Enter</b></label>
-                <input type="text" placeholder="Enter Amount" name="amount" id="amount"
+                <input type="number" placeholder="Enter Amount" name="amount" id="amount"
                     (ngModelChange)="onChangeAmount($event)" required min="1" required minlength="1" required
                     maxlength="6" class="form-control" required [(ngModel)]="cardsearch.amount" required digitOnly>
 
@@ -122,7 +134,7 @@
 
     </form>
 
-    
+     
 </div>
 
 </div>

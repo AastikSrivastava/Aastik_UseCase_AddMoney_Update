@@ -15,6 +15,7 @@ export class AddMoneyComponent implements OnInit {
   //session user_id
   userId = 1;
 
+
   cardNo: number;
   amount: number;
 
@@ -25,9 +26,12 @@ export class AddMoneyComponent implements OnInit {
   isCardCheck = true;
 
 
+  //........//
 //month year check
-// monthCheck=true
-// yearCheck=true
+isValidMonth=true;
+isValidYear=true;
+
+
 
   //Amount Validation
   isAmountEmpty = true;
@@ -47,14 +51,13 @@ export class AddMoneyComponent implements OnInit {
 
   support = false;
 
-  support_2 = false;
 
   amountStatus = false;
 
   ngOnInit(): void {
     this.cardsearch = new CardDetails();
 
-  }
+  }  
   constructor(private service: AddMoneyService, private router: Router) { }
 
   checkCard() {
@@ -65,16 +68,64 @@ export class AddMoneyComponent implements OnInit {
 if(data!=null)
 {
 
-        this.cardsearch = data;
+       // this.cardsearch = data;
+
+        console.log("Card Details ::-- ");
+
+        console.log(data.cardNo);
+        console.log(data.amount);
+        console.log(data.expiryMonth);
+        console.log(data.expiryYear);
+        console.log("if else condi.")
+
+
+//........//
+        if(data.expiryMonth==this.cardsearch.expiryMonth && data.expiryYear==this.cardsearch.expiryYear)
+        {
+
+this.cardStatus=
+
+          this.isCardCheck = true;
+
+          this.amountStatus = true;
+  
+          this.isAddDone = true;
+        this.isNotAdd = true;
+
+        console.log("month and year checking done ")
+
+        }
+
+        //........//
+        if((data.expiryMonth!=this.cardsearch.expiryMonth) || (data.expiryYear!=this.cardsearch.expiryYear))
+        {
+
+          this.cardStatus = false;
+
+          this.isCardCheck = false;
+
+
+          this.amountStatus = false;
+
+
+          this.isAddDone = true;
+
+
+          this.isNotAdd = true;
+
+          console.log("month and year checking not getting done ")
+
+        } 
+
 
         console.log(data);
 
-        this.isCardCheck = true;
+      //   this.isCardCheck = true;
 
-        this.amountStatus = true;
+      //   this.amountStatus = true;
 
-        this.isAddDone = true;
-      this.isNotAdd = true;
+      //   this.isAddDone = true;
+      // this.isNotAdd = true;
 
         console.log("data is comming")
 
@@ -123,6 +174,7 @@ if(data==null)
   addMoneyToWallet() {
 
     this.service.addMoneyToWallet(this.userId,this.cardsearch.amount,this.cardsearch.cardNo).subscribe(
+
     data => {
 
       console.log(data);
@@ -188,16 +240,24 @@ if(data==null)
       this.isEmpty = false;
       this.isValidCard = true;
       this.cardStatus = false;
+      this.amountStatus=false;
+      //........//
+      // this.isCardCheck=true;
     }
     else if (event <= 0) {
       this.isEmpty = true;
       this.isValidCard = false;
       this.cardStatus = false;
+      this.amountStatus=false;
+      //........//
+      // this.isCardCheck=true;
     }
     else {
       this.isEmpty = true;
       this.isValidCard = true;
-      this.cardStatus = true;
+      //........//
+     // this.cardStatus = true;  
+      //this.isCardCheck=true;
 
     }
 
@@ -230,6 +290,78 @@ if(data==null)
 
     }
 
+    
   }
+
+
+  //........//
+  public onChangeMonth(event: any): void
+  {
+    console.log(event);
+
+
+    if(event==null || event.length==0)
+    {
+      this.cardStatus=false; 
+    }
+
+    else if(event<=0)
+    {
+       this.isValidMonth=false;
+       this.cardStatus=false;
+       this.amountStatus=false;
+      //  this.isCardCheck=true;
+    
+    }
+    
+    
+    else
+    {
+      this.isValidMonth=true;
+       this.cardStatus=true;
+       this.amountStatus=false;
+      // this.isCardCheck=true;
+    }
+    
+
+
+  }
+
+  //........//
+  public onChangeYear(event: any):void
+
+  {
+
+    console.log(event);
+
+
+    if(event==null || event.length==0)
+    {
+      this.cardStatus=false;
+    }
+
+    else if(event<=0)
+    {
+      this.isValidYear=false;
+      this.cardStatus=false;
+      // this.isCardCheck=true;
+      this.amountStatus=false;
+    }
+    
+    else
+    {
+      this.isValidYear=true;
+     this.cardStatus=true;
+     this.amountStatus=false;
+   //  this.isCardCheck=true;
+    
+    }
+    
+
+
+
+  }
+
+
 
 }
